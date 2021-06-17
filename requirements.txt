@@ -1,0 +1,126 @@
+absl-py @ file:///tmp/build/80754af9/absl-py_1607439979954/work
+argon2-cffi @ file:///tmp/build/80754af9/argon2-cffi_1596828496740/work
+astor==0.8.1
+astunparse==1.6.3
+async-generator==1.10
+attrs @ file:///tmp/build/80754af9/attrs_1600298409949/work
+backcall==0.2.0
+bertviz==1.0.0
+bleach @ file:///tmp/build/80754af9/bleach_1600439572647/work
+boto3==1.17.58
+botocore==1.20.58
+cachetools==4.1.1
+certifi==2020.6.20
+cffi @ file:///tmp/build/80754af9/cffi_1606255098796/work
+chardet==3.0.4
+click==7.1.2
+cycler==0.10.0
+dataclasses==0.8
+decorator==4.4.2
+defusedxml==0.6.0
+entrypoints==0.3
+et-xmlfile==1.0.1
+filelock==3.0.12
+gast==0.3.3
+google-auth==1.23.0
+google-auth-oauthlib==0.4.2
+google-pasta==0.2.0
+grpcio @ file:///tmp/build/80754af9/grpcio_1597424460877/work
+h5py @ file:///tmp/build/80754af9/h5py_1593454121459/work
+idna==2.10
+importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1602276842396/work
+ipykernel @ file:///tmp/build/80754af9/ipykernel_1596206602906/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///tmp/build/80754af9/ipython_1593447367857/work
+ipython-genutils==0.2.0
+ipywidgets @ file:///tmp/build/80754af9/ipywidgets_1601490159889/work
+jdcal==1.4.1
+jedi @ file:///tmp/build/80754af9/jedi_1598371618777/work
+Jinja2==2.11.2
+jmespath==0.10.0
+joblib @ file:///tmp/build/80754af9/joblib_1601912903842/work
+jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
+jupyter==1.0.0
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-console @ file:///tmp/build/80754af9/jupyter_console_1598884538475/work
+jupyter-core==4.6.3
+jupyterlab-pygments @ file:///tmp/build/80754af9/jupyterlab_pygments_1601490720602/work
+Keras==2.3.1
+Keras-Applications @ file:///tmp/build/80754af9/keras-applications_1594366238411/work
+Keras-Preprocessing==1.1.2
+kiwisolver==1.2.0
+Markdown @ file:///tmp/build/80754af9/markdown_1605111083232/work
+MarkupSafe==1.1.1
+matplotlib @ file:///tmp/build/80754af9/matplotlib-base_1597876339545/work
+mistune==0.8.4
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+nbclient @ file:///tmp/build/80754af9/nbclient_1602783176460/work
+nbconvert @ file:///tmp/build/80754af9/nbconvert_1601914804165/work
+nbformat @ file:///tmp/build/80754af9/nbformat_1602783287752/work
+nest-asyncio @ file:///tmp/build/80754af9/nest-asyncio_1601499549014/work
+notebook @ file:///tmp/build/80754af9/notebook_1601501581489/work
+numpy==1.18.5
+oauthlib==3.1.0
+olefile==0.46
+openpyxl @ file:///tmp/build/80754af9/openpyxl_1598113097404/work
+opt-einsum==3.1.0
+packaging==20.7
+pandas @ file:///tmp/build/80754af9/pandas_1602088135163/work
+pandocfilters==1.4.2
+parso==0.7.0
+pexpect==4.8.0
+pickleshare==0.7.5
+Pillow @ file:///tmp/build/80754af9/pillow_1602788709045/work
+prometheus-client==0.8.0
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1602688806899/work
+protobuf==3.13.0
+ptyprocess==0.6.0
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+pyparsing==2.4.7
+pyrsistent @ file:///tmp/build/80754af9/pyrsistent_1600141725711/work
+python-dateutil==2.8.1
+pytz==2020.1
+PyYAML==5.3.1
+pyzmq==19.0.2
+qtconsole @ file:///tmp/build/80754af9/qtconsole_1600870028330/work
+QtPy==1.9.0
+regex==2020.11.13
+requests==2.25.0
+requests-oauthlib==1.3.0
+rsa==4.6
+s3transfer==0.4.2
+sacremoses==0.0.43
+scikit-learn @ file:///tmp/build/80754af9/scikit-learn_1598379690588/work
+scipy @ file:///tmp/build/80754af9/scipy_1597686625380/work
+seaborn @ file:///tmp/build/80754af9/seaborn_1600553570093/work
+Send2Trash==1.5.0
+sentencepiece==0.1.95
+sip==4.19.24
+six @ file:///tmp/build/80754af9/six_1605205335545/work
+tensorboard==2.4.0
+tensorboard-plugin-wit==1.7.0
+tensorflow==2.3.1
+tensorflow-estimator==2.3.0
+tensorflow-examples @ git+https://github.com/tensorflow/examples.git@e5fcd871a9ef4066f8db7d86941a710271f8ed89
+termcolor==1.1.0
+terminado==0.9.1
+testpath==0.4.4
+threadpoolctl @ file:///tmp/tmp9twdgx9k/threadpoolctl-2.1.0-py3-none-any.whl
+tokenizers==0.9.4
+torch==1.3.1
+tornado==6.0.4
+tqdm==4.54.1
+traitlets==4.3.3
+transformers==4.0.0
+urllib3==1.26.2
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+webencodings==0.5.1
+Werkzeug==0.16.1
+widgetsnbextension==3.5.1
+wrapt==1.12.1
+xlrd==1.2.0
+zipp @ file:///tmp/build/80754af9/zipp_1604001098328/work

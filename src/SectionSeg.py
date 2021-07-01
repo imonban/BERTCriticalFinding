@@ -28,6 +28,31 @@ def report_split_old(txt):
     print(sections.keys())
     return sections
 
+def extract(txt):
+    txt = txt.encode("ascii", errors="ignore").decode()
+    txt = txt.lower()
+    txt = txt.replace('\n', ' ')
+    txt = txt.replace('\r', ' ')
+    txt = txt.replace('\t', ' ')
+    re1 = '(\\()'  # Any Single Character 1
+    re2 = '.*?'  # Non-greedy match on filler
+    re3 = '(\\))'  # Any Single Character 2
+
+    rg = re.compile(re1 + re2 + re3, re.IGNORECASE | re.DOTALL)
+    tags = ['clinical indication: ','support devices: ','comparison: ','findings: ', 'impression:', 'critical findings', 'important findings']
+    sections = {'clinical indication: ': ' ','support devices: ': ' ','comparison: ': ' ','findings: ': ' ', 'impression: ': ' '}
+    for t in sections.keys():
+        try:
+            tmp = txt.split(t)[1]
+            for l in tags:
+                if t !=l:
+                    tmp = tmp.split(l)[0]
+                    sections[t] = re.sub(rg, ' ', tmp.split('these findings: ')[0])
+        except:
+            sections[t] = ' '
+    print(sections.keys())
+    return sections
+
 def complex_split(critical):
     indication= []
     technique = []
@@ -45,7 +70,7 @@ def complex_split(critical):
     Abd=  ['abdominal', 'pelvic', 'vomiting', 'distension'] 
     flg_pu = 0
     for i in range(critical.shape[0]):
-        sections = extract(critical.iloc[i]['ContentText'])
+        sections = extract(critical.iloc[i]['report_body'])
         indication.append(sections['clinical indication: '])
         technique.append(sections['support devices: '])
         comparison.append(sections['comparison: '])
@@ -63,7 +88,7 @@ def complex_split(critical):
         elif bool([ele for ele in Infx if(ele in sections['clinical indication: '])]) :
             category.append('Infx')
             flg_pu = 1
-        elif bool([ele for ele in CP if(ele in sections['clinical indicsation: '])]) :
+        elif bool([ele for ele in CP if(ele in sections['clinical indication: '])]) :
             category.append('CP')
             flg_pu = 1
         elif bool([ele for ele in Neuro if(ele in sections['clinical indication: '])]) :

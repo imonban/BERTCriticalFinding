@@ -45,7 +45,7 @@ def data_split(critical):
                                                   stratify=critical.Label.values)
     critical['data_type'] = ['not_set']*critical.shape[0]
     critical.loc[X_train, 'data_type'] = 'train'
-    critical.loc[X_val, 'data_type'] = 'val
+    critical.loc[X_val, 'data_type'] = 'val'
     return critical
 
 def data_length(dataset, classes):
@@ -91,7 +91,7 @@ def tokenizationBERT(df):
 
     return dataset_train, dataset_val 
 
-def evaluate(dataloader_val):
+def evaluate(model, dataloader_val, device):
 
     model.eval()
     
@@ -136,7 +136,7 @@ def generate_label(preds):
     return(preds)
 
 def clinicalmodeltraining(df):
-    critical = data_split(df)
+    df = data_split(df)
     dataset_train, dataset_val = tokenizationBERT(df)
     model = BertForSequenceClassification.from_pretrained(
         #"bert-base-uncased", # Use the 12-layer BERT model, with an uncased vocab.
@@ -172,48 +172,39 @@ def clinicalmodeltraining(df):
     model.to(device)
     print(device)
     for epoch in tqdm(range(1, epochs+1)):
-    
-    model.train()
-    
-    loss_train_total = 0
-
-    progress_bar = tqdm(dataloader_train, desc='Epoch {:1d}'.format(epoch), leave=False, disable=False)
-    for batch in progress_bar:
-
-        model.zero_grad()
-        
-        batch = tuple(b.to(device) for b in batch)
-        
-        inputs = {'input_ids':      batch[0],
+        model.train()
+        loss_train_total = 0
+        progress_bar = tqdm(dataloader_train, desc='Epoch {:1d}'.format(epoch), leave=False, disable=False)
+        for batch in progress_bar:
+            model.zero_grad()
+            batch = tuple(b.to(device) for b in batch)
+            inputs = {'input_ids':      batch[0],
                   'attention_mask': batch[1],
                   'labels':         batch[2],
                  }       
-
-        outputs = model(**inputs)
+            outputs = model(**inputs)
         
-        loss = outputs[0]
-        loss_train_total += loss.item()
-        loss.backward()
+            loss = outputs[0]
+            loss_train_total += loss.item()
+            loss.backward()
 
-        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-
-        optimizer.step()
-        scheduler.step()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            optimizer.step()
+            scheduler.step()
         
-        progress_bar.set_postfix({'training_loss': '{:.3f}'.format(loss.item()/len(batch))})
+            progress_bar.set_postfix({'training_loss': '{:.3f}'.format(loss.item()/len(batch))})
          
+        torch.save(model.state_dict(), f'finetuned_BERT_epoch_{epoch}.model')
         
-    torch.save(model.state_dict(), f'finetuned_BERT_epoch_{epoch}.model')
-        
-    tqdm.write(f'\nEpoch {epoch}')
+        tqdm.write(f'\nEpoch {epoch}')
     
-    loss_train_avg = loss_train_total/len(dataloader_train)            
-    tqdm.write(f'Training loss: {loss_train_avg}')
+        loss_train_avg = loss_train_total/len(dataloader_train)            
+        tqdm.write(f'Training loss: {loss_train_avg}')
     
-    val_loss, predictions, true_vals = evaluate(dataloader_validation)
-    val_f1 = f1_score_func(predictions, true_vals)
-    tqdm.write(f'Validation loss: {val_loss}')
-    tqdm.write(f'F1 Score (Weighted): {val_f1}')
+        val_loss, predictions, true_vals = evaluate(model, dataloader_validation, device)
+        val_f1 = f1_score_func(predictions, true_vals)
+        tqdm.write(f'Validation loss: {val_loss}')
+        tqdm.write(f'F1 Score (Weighted): {val_f1}')
     
     _, predictions, true_vals = evaluate(dataloader_validation)
     
